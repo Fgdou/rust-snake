@@ -106,6 +106,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "snake-server"
+version = "0.1.0"
+
+[[package]]
 name = "snake-shared"
 version = "0.1.0"
 

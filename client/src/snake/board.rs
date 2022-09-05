@@ -1,6 +1,7 @@
-use crate::snake::game::Direction;
-use crate::snake::math::Point;
-use crate::snake::pixels::{Color, Rect, Window};
+use snake_shared::game::Direction;
+use snake_shared::maths::{Point, Color};
+use crate::snake::maths::Rect;
+use crate::snake::pixels::{Window};
 
 pub struct Board {
     window: Window,

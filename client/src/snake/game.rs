@@ -1,35 +1,8 @@
+use snake_shared::game::{Direction};
 use crate::snake::board::Board;
-use crate::snake::game::Direction::UP;
-use crate::snake::math::Point;
-use crate::snake::pixels::{Color, Window};
-
-#[derive(PartialEq)]
-pub enum Direction{
-    UP,
-    LEFT,
-    DOWN,
-    RIGHT
-}
-impl Direction{
-    pub fn opposite(&self, other_direction: &Direction) -> bool {
-        use Direction::*;
-
-        match (self, other_direction){
-            (UP, DOWN) => true,
-            (DOWN, UP) => true,
-            (LEFT, RIGHT) => true,
-            (RIGHT, LEFT) => true,
-            _ => false
-        }
-    }
-}
-
-pub struct Player {
-    name: String,
-    direction: Direction,
-    alive: bool,
-    body: Vec<Option<Point>>
-}
+use snake_shared::game::Direction::UP;
+use snake_shared::maths::{Color, Point};
+use crate::snake::pixels::Window;
 
 pub struct Game{
     apple: Option<Point>,
@@ -38,7 +11,12 @@ pub struct Game{
     running: bool,
     players: Vec<Player>
 }
-
+pub struct Player {
+    pub name: String,
+    pub direction: Direction,
+    pub alive: bool,
+    pub body: Vec<Option<Point>>
+}
 impl Player{
     pub fn new(name: String) -> Player {
         Player{

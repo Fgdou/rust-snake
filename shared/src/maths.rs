@@ -1,9 +1,4 @@
-use std::ops::{Add, Div, Mul, Sub};
-
-pub struct Rect{
-    pub center: Point,
-    pub half_size: Point
-}
+use std::ops::{Mul, Add, Div, Sub};
 
 #[derive(Eq, PartialEq, Clone)]
 pub struct Point {
@@ -95,13 +90,14 @@ impl<'a> Div<i32> for &'a Point{
     }
 }
 
-impl From<Rect> for sdl2::rect::Rect {
-    fn from(e: Rect) -> Self {
-        sdl2::rect::Rect::new(
-            e.center.x-e.half_size.x,
-            e.center.y-e.half_size.y,
-            (e.half_size.x*2) as u32,
-            (e.half_size.y*2) as u32,
-        )
+#[derive(Clone)]
+pub struct Color{
+    pub r: u8,
+    pub g: u8,
+    pub b: u8
+}
+impl Color{
+    pub fn new(r: u8, g: u8, b: u8) -> Self {
+        Self { r, g, b }
     }
 }

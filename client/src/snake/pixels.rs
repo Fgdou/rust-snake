@@ -1,33 +1,12 @@
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::render::WindowCanvas;
-use crate::snake::game::Direction;
-pub use crate::snake::math::Rect;
+use snake_shared::game::Direction;
+use snake_shared::maths::Color;
+use crate::snake::maths::Rect;
 
-
-pub struct Color{
-    pub r: u8,
-    pub g: u8,
-    pub b: u8
-}
-impl Color{
-    pub fn new(r: u8, g: u8, b: u8) -> Self {
-        Self { r, g, b }
-    }
-}
-impl Into<sdl2::pixels::Color> for Color {
-    fn into(self) -> sdl2::pixels::Color {
-        sdl2::pixels::Color::RGB(self.r, self.g, self.b)
-    }
-}
-impl Clone for Color{
-    fn clone(&self) -> Self {
-        Color{
-            r: self.r,
-            g: self.g,
-            b: self.b
-        }
-    }
+pub fn colorToSdl(c: Color) -> sdl2::pixels::Color {
+    sdl2::pixels::Color::RGB(c.r, c.g, c.b)
 }
 
 pub struct Window {
@@ -90,11 +69,11 @@ impl Window {
     }
 
     pub fn clear(&mut self, color: Color){
-        self.canvas.set_draw_color(color);
+        self.canvas.set_draw_color(colorToSdl(color));
         self.canvas.clear();
     }
     pub fn draw_rect(&mut self, rect: Rect, color: Color){
-        self.canvas.set_draw_color(color);
+        self.canvas.set_draw_color(colorToSdl(color));
         self.canvas.fill_rect( sdl2::rect::Rect::from(rect)).unwrap();
     }
 
