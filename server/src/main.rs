@@ -1,5 +1,5 @@
 mod socket;
 
 fn main() {
-    println!("Hello, world!");
+    socket::listen(18000);
 }
